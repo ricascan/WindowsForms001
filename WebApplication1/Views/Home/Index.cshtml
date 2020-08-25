@@ -3,7 +3,15 @@
 }
 <script type="text/javascript">
     $(document).ready(function () {
-        alert("jquery funciona");
+        $("#b1").click(function () {
+            alert("Hola");
+            $.get("../../api/webapi", function (datos) {
+                $("#tabla").append("<tr><td> Número </td><td> Concepto </td></tr>");
+                datos.forEach(function (dato) {
+                    $("#tabla").append("<tr><td>" + dato.Numero + "</td><td> " + dato.Concepto + "</td></tr>");
+                })
+            })
+        })
     });
     
     //function mensaje() {
@@ -24,4 +32,9 @@
 
     //}
 </script>
-<div class="panel-body"><input class="btn-danger" id="b1" type="button" value="aceptar" onclick="mensaje()" /></div>
+<div class="panel-body">
+    <table id="tabla" class="table-bordered" >
+        
+    </table>
+    <input class="btn-danger" id="b1" type="button" value="aceptar"  />
+</div>
